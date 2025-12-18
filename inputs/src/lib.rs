@@ -1,5 +1,4 @@
 pub fn fetch_input(day: u8) -> Vec<String> {
-    let session = std::env::var("ADVENT_SESSION").expect("missing $ADVENT_SESSION token");
     const INPUTS_CACHE: &str = "inputs.txt";
     let input = match std::fs::read_to_string(INPUTS_CACHE) {
         Ok(input) if !input.is_empty() => {
@@ -7,6 +6,7 @@ pub fn fetch_input(day: u8) -> Vec<String> {
             input
         }
         _ => {
+            let session = std::env::var("ADVENT_SESSION").expect("missing $ADVENT_SESSION token");
             const BASE_URL: &str = "https://adventofcode.com/2025/day";
             let url = format!("{BASE_URL}/{day}/input");
             let client = reqwest::blocking::Client::new();
