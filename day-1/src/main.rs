@@ -6,10 +6,13 @@ fn main() {
     let mut current = 50;
 
     let mut zeros = 0;
-    for clicks in &inputs[..10] {
-        dbg!(clicks);
+    for clicks in &inputs {
+        // dbg!(clicks);
+        println!("current: {current}, clicks: {clicks}");
         current = turn(current, clicks);
+        println!("new current: {current}");
         if current == 0 {
+            println!("#### inc zeros from {zeros} to {}", zeros + 1);
             zeros += 1;
         }
     }

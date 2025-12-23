@@ -1,19 +1,23 @@
 pub fn turn(current: usize, turn: impl AsRef<str>) -> usize {
     let sign = &turn.as_ref()[0..1];
     let clicks = &turn.as_ref()[1..];
-    let clicks = clicks.parse::<isize>().expect("parse click");
+    let clicks = clicks.parse::<usize>().expect("parse click");
+    // example: if R256 the turn is two times to the same position plus 56
+    let clicks_normalized = clicks % 100;
     let sign = if sign == "R" { 1 } else { -1isize };
-    let num = current as isize + clicks * sign;
-    println!("current: {current}, sign: {sign}, clicks: {clicks}, num: {num})");
+    let num = current as isize + clicks_normalized as isize * sign;
+    //println!("current: {current}, sign: {sign}, clicks: {clicks}, num: {num})");
     let res = if num < 0 {
         // num is negative
+        //println!("100 + {num} = {}", 100 + num);
         (100 + num) as usize
     } else if num > 99 {
+        //println!("{num} - 100 = {}", num - 100);
         (num - 100) as usize
     } else {
         num as usize
     };
-    dbg!(res);
+    //dbg!(res);
     res
 }
 
