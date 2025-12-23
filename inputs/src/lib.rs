@@ -1,6 +1,12 @@
-pub fn fetch_input(day: u8) -> Vec<String> {
-    const INPUTS_CACHE: &str = "inputs.txt";
-    let input = match std::fs::read_to_string(INPUTS_CACHE) {
+pub fn fetch_input(day: usize, part: Option<usize>) -> Vec<String> {
+    let mut inputs_path = format!("./day-{day}");
+    if let Some(part) = part {
+        inputs_path.push_str(&format!("-part-{part}"));
+    };
+    let path = std::path::absolute(&inputs_path);
+    println!("{path:?}");
+    let inputs_txt = format!("./{inputs_path}/inputs.txt");
+    let input = match std::fs::read_to_string(&inputs_txt) {
         Ok(input) if !input.is_empty() => {
             println!("Using cached input");
             input
@@ -17,7 +23,7 @@ pub fn fetch_input(day: u8) -> Vec<String> {
                 .expect("fetching inputs")
                 .text()
                 .expect("read body as text");
-            std::fs::write(INPUTS_CACHE, &input).expect("writing to cache");
+            std::fs::write(inputs_txt, &input).expect("writing to cache");
             input
         }
     };
@@ -29,7 +35,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = fetch_input(1);
+        let result = fetch_input(1, None);
         assert_eq!(result[0], "L50");
     }
 }

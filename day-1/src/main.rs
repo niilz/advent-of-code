@@ -1,7 +1,7 @@
 use day_1::turn;
 
 fn main() {
-    let inputs = inputs::fetch_input(1);
+    let inputs = inputs::fetch_input(1, None);
 
     let mut current = 50;
 
