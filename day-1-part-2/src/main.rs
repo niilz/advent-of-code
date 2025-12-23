@@ -1,4 +1,4 @@
-use day_1::turn;
+use day_1_part_2::turn;
 
 fn main() {
     let inputs = inputs::fetch_input(1, None);
@@ -9,12 +9,10 @@ fn main() {
     for clicks in &inputs {
         // dbg!(clicks);
         println!("current: {current}, clicks: {clicks}");
-        current = turn(current, clicks);
-        println!("new current: {current}");
-        if current == 0 {
-            println!("#### inc zeros from {zeros} to {}", zeros + 1);
-            zeros += 1;
-        }
+        let (cur, zs) = turn(current, clicks);
+        current += cur;
+        zeros += zs;
+        println!("new current: {current}, zeros: {zeros}");
     }
     dbg!(zeros);
 }
