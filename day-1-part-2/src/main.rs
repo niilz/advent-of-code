@@ -10,7 +10,7 @@ fn main() {
         // dbg!(clicks);
         println!("current: {current}, clicks: {clicks}");
         let (cur, zs) = turn(current, clicks);
-        current += cur;
+        current = cur;
         zeros += zs;
         println!("new current: {current}, zeros: {zeros}");
     }
