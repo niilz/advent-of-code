@@ -86,6 +86,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "day-2-part-2"
+version = "0.1.0"
+dependencies = [
+ "inputs",
+]
+
+[[package]]
 name = "displaydoc"
 version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
