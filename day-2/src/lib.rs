@@ -35,28 +35,28 @@ mod test {
     #[test]
     fn find_invalid_ids() {
         // 11-22 has two invalid IDs, 11 and 22.
-        let invalids_sum = invalid("11-22;", &mut HashMap::new());
+        let invalids_sum = invalid("11-22", &mut HashMap::new());
         assert_eq!(invalids_sum, [11, 22]);
         // 95-115 has one invalid ID, 99.
-        let invalids_sum = invalid("95-115;", &mut HashMap::new());
+        let invalids_sum = invalid("95-115", &mut HashMap::new());
         assert_eq!(invalids_sum, [99]);
         // 998-1012 has one invalid ID, 1010.
-        let invalids_sum = invalid("998-1012;", &mut HashMap::new());
+        let invalids_sum = invalid("998-1012", &mut HashMap::new());
         assert_eq!(invalids_sum, [1010]);
         // 1188511880-1188511890 has one invalid ID, 1188511885.
-        let invalids_sum = invalid("1188511880-1188511890;", &mut HashMap::new());
+        let invalids_sum = invalid("1188511880-1188511890", &mut HashMap::new());
         assert_eq!(invalids_sum, [1188511885]);
         // 222220-222224 has one invalid ID, 222222.
-        let invalids_sum = invalid("222220-222224;", &mut HashMap::new());
+        let invalids_sum = invalid("222220-222224", &mut HashMap::new());
         assert_eq!(invalids_sum, [222222]);
         // 1698522-1698528 contains no invalid IDs.
-        let invalids_sum = invalid("1698522-1698528;", &mut HashMap::new());
+        let invalids_sum = invalid("1698522-1698528", &mut HashMap::new());
         assert_eq!(invalids_sum, []);
         // 446443-446449 has one invalid ID, 446446.
-        let invalids_sum = invalid("446443-446449;", &mut HashMap::new());
+        let invalids_sum = invalid("446443-446449", &mut HashMap::new());
         assert_eq!(invalids_sum, [446446]);
         // 38593856-38593862 has one invalid ID, 38593859.
-        let invalids_sum = invalid("38593856-38593862;", &mut HashMap::new());
+        let invalids_sum = invalid("38593856-38593862", &mut HashMap::new());
         assert_eq!(invalids_sum, [38593859]);
     }
 }
