@@ -18,12 +18,23 @@ pub fn invalid(range: &str, cache: &mut HashMap<usize, bool>) -> Vec<usize> {
 
 fn is_invalid(num: usize) -> bool {
     let num = num.to_string();
-    if num.len() % 2 != 0 {
-        false
-    } else {
-        let half = num.len() / 2;
-        &num[..half] == &num[half..]
+    for chunksize in 1..(num.len() / 2) + 1 {
+        if num.len() % chunksize != 0 {
+            // chunks can only be equal if num can be devided in those chunks
+            continue;
+        }
+        let chunk = &num[..chunksize];
+        if num
+            .chars()
+            .collect::<Vec<_>>()
+            .as_slice()
+            .chunks(chunksize)
+            .all(|ch| ch == chunk.chars().collect::<Vec<char>>())
+        {
+            return true;
+        }
     }
+    false
 }
 
 #[cfg(test)]
