@@ -1,5 +1,21 @@
-pub fn max_jolts(bank: AsRef<str>) -> usize {
-    42
+pub fn max_jolts(bank: impl AsRef<str>) -> usize {
+    let bank = bank.as_ref();
+    let (first, idx) = largest(&bank[..bank.len() - 1]);
+    let (second, _idx) = largest(&bank[idx + 1..]);
+    format!("{first}{second}").parse().expect("parsing sum")
+}
+
+fn largest(digits: &str) -> (usize, usize) {
+    for num in ('1'..='9').rev() {
+        let found = digits.find(num);
+        match found {
+            Some(idx) => {
+                return (num.to_digit(10).unwrap() as usize, idx);
+            }
+            None => continue,
+        }
+    }
+    unreachable!("input contains only digits");
 }
 
 #[cfg(test)]
